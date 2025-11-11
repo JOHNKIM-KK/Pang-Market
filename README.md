@@ -75,7 +75,3 @@ pnpm dev:server       # 백엔드만 실행
 pnpm db:studio        # Prisma Studio (DB GUI)
 pnpm build            # 빌드
 ```
-
-## 📄 라이선스
-
-MIT
