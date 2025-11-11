@@ -16,8 +16,8 @@ export function useLogin() {
       return response;
     },
     onSuccess: (data) => {
-      // Zustand 스토어에 인증 정보 저장
-      setAuth(data.accessToken, data.user);
+      // Zustand 스토어에 인증 정보 저장 (refreshToken 포함)
+      setAuth(data.accessToken, data.refreshToken, data.user);
 
       // 쿼리 캐시 무효화
       queryClient.invalidateQueries({ queryKey: ["currentUser"] });

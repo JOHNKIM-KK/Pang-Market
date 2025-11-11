@@ -10,6 +10,11 @@ class TokenManager {
     return useAuthStore.getState().accessToken;
   }
 
+  // Refresh Token 가져오기
+  getRefreshToken(): string | null {
+    return useAuthStore.getState().refreshToken;
+  }
+
   // Access Token 갱신
   async refreshToken(): Promise<string> {
     // 이미 갱신 중이면 기존 Promise 반환 (중복 요청 방지)
@@ -19,7 +24,13 @@ class TokenManager {
 
     this.refreshPromise = (async () => {
       try {
-        const { accessToken } = await refreshAccessToken();
+        const refreshToken = this.getRefreshToken();
+        
+        if (!refreshToken) {
+          throw new Error("Refresh token이 없습니다.");
+        }
+
+        const { accessToken } = await refreshAccessToken(refreshToken);
         useAuthStore.getState().setAccessToken(accessToken);
         return accessToken;
       } catch (error) {
