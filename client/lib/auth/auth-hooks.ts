@@ -81,7 +81,7 @@ export function useCurrentUser() {
       if (!accessToken) {
         throw new Error("인증 정보가 없습니다.");
       }
-      const user = await getCurrentUser(accessToken);
+      const user = await getCurrentUser();
       return user;
     },
     enabled: !!accessToken, // accessToken이 있을 때만 실행

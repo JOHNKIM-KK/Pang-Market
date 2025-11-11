@@ -24,6 +24,7 @@ export function SignupForm() {
     formState: { errors, isSubmitting },
   } = useForm<SignupInput>({
     resolver: zodResolver(signupSchema),
+    mode: "onBlur",
   });
 
   const signupMutation = useSignup();
@@ -120,7 +121,7 @@ export function SignupForm() {
             )}
           </div>
         </CardContent>
-        <CardFooter className="flex flex-col space-y-4">
+        <CardFooter className="flex flex-col space-y-4 mt-4">
           <Button
             type="submit"
             className="w-full"

@@ -1,11 +1,14 @@
 import { z } from "zod";
 
+// 이메일 정규표현식 상수
+const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
 // 로그인 스키마
 export const loginSchema = z.object({
   email: z
     .string()
     .min(1, "이메일을 입력해주세요.")
-    .email("올바른 이메일 형식이 아닙니다."),
+    .regex(EMAIL_REGEX, "올바른 이메일 형식이 아닙니다."),
   password: z
     .string()
     .min(1, "비밀번호를 입력해주세요.")
@@ -20,7 +23,7 @@ export const signupSchema = z
     email: z
       .string()
       .min(1, "이메일을 입력해주세요.")
-      .email("올바른 이메일 형식이 아닙니다."),
+      .regex(EMAIL_REGEX, "올바른 이메일 형식이 아닙니다."),
     name: z
       .string()
       .min(1, "이름을 입력해주세요.")
